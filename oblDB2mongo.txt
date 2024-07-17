@@ -1,0 +1,146 @@
+use obligatorio
+
+db.createCollection("Establecimientos")
+db.createCollection("Licencias")
+db.createCollection("TipoViolacion")
+db.createCollection("Inspecciones")
+db.createCollection("Conversaciones")
+
+db.Establecimientos.insertMany([
+    { estNumero: 1, estNombre: 'Restaurante El Buen Sabor', estDireccion: 'Av. Libertador 123', estTelefono: '123-456-789', estLatitud: -34.901234, estLongitud: -56.123456 },
+    { estNumero: 2, estNombre: 'Pizzería Bella Napoli', estDireccion: 'Calle Italia 456', estTelefono: '987-654-321', estLatitud: -34.912345, estLongitud: -56.134567 },
+    { estNumero: 3, estNombre: 'Cafetería Aroma Fresco', estDireccion: 'Av. Brasil 789', estTelefono: '456-789-123', estLatitud: -34.923456, estLongitud: -56.145678 },
+    { estNumero: 4, estNombre: 'Bar El Encuentro', estDireccion: 'Calle Uruguay 1011', estTelefono: '321-654-987', estLatitud: -34.934567, estLongitud: -56.156789 },
+    { estNumero: 5, estNombre: 'Comedor Las Delicias', estDireccion: 'Av. España 1213', estTelefono: '789-123-456', estLatitud: -34.945678, estLongitud: -56.167890 },
+    { estNumero: 6, estNombre: 'Restaurante Mar y Tierra', estDireccion: 'Av. Costanera 1415', estTelefono: '159-357-258', estLatitud: -34.956789, estLongitud: -56.178901 },
+    { estNumero: 7, estNombre: 'Hamburguesería Don Manolo', estDireccion: 'Av. Italia 1617', estTelefono: '753-951-456', estLatitud: -34.967890, estLongitud: -56.189012 },
+    { estNumero: 8, estNombre: 'Parrillada El Fogón', estDireccion: 'Calle Argentina 1819', estTelefono: '246-802-468', estLatitud: -34.978901, estLongitud: -56.190123 },
+    { estNumero: 9, estNombre: 'Café Expresso', estDireccion: 'Av. del Libertador 2021', estTelefono: '357-913-579', estLatitud: -34.989012, estLongitud: -56.201234 },
+    { estNumero: 10, estNombre: 'Pizzería Rápida', estDireccion: 'Calle Bolivia 2223', estTelefono: '468-024-680', estLatitud: -34.990123, estLongitud: -56.212345 }
+])
+
+db.Licencias.insertMany([
+    { licNumero: 1, estNumero: 1, licFchEmision: new Date('2023-01-15'), licFchVto: new Date('2024-01-15'), licStatus: 'APR' },
+    { licNumero: 2, estNumero: 2, licFchEmision: new Date('2023-02-20'), licFchVto: new Date('2024-02-20'), licStatus: 'APR' },
+    { licNumero: 3, estNumero: 3, licFchEmision: new Date('2023-03-10'), licFchVto: new Date('2024-03-10'), licStatus: 'APR' },
+    { licNumero: 4, estNumero: 4, licFchEmision: new Date('2023-04-25'), licFchVto: new Date('2024-04-25'), licStatus: 'APR' },
+    { licNumero: 5, estNumero: 5, licFchEmision: new Date('2023-05-05'), licFchVto: new Date('2024-05-05'), licStatus: 'APR' },
+    { licNumero: 6, estNumero: 6, licFchEmision: new Date('2023-06-18'), licFchVto: new Date('2024-06-18'), licStatus: 'APR' },
+    { licNumero: 7, estNumero: 7, licFchEmision: new Date('2023-07-29'), licFchVto: new Date('2024-07-29'), licStatus: 'APR' }
+])
+
+db.TipoViolacion.insertMany([
+    { violCodigo: 1, violDescrip: 'Insectos en la cocina' },
+    { violCodigo: 2, violDescrip: 'Mal manejo de alimentos' },
+    { violCodigo: 3, violDescrip: 'Mala Higiene' },
+    { violCodigo: 4, violDescrip: 'Mal estado Instalaciones' },
+    { violCodigo: 5, violDescrip: 'Personal no capacitado' }
+])
+
+db.Inspecciones.insertMany([
+    { inspID: 1, inspFecha: new Date('2023-01-20'), estNumero: 1, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 2, inspComents: 'Inspección de rutina.' },
+    { inspID: 2, inspFecha: new Date('2023-02-25'), estNumero: 2, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 3, inspComents: 'Se requiere mejorar la limpieza en la cocina.' },
+    { inspID: 3, inspFecha: new Date('2023-03-30'), estNumero: 3, inspRiesgo: 'Alto', inspResultado: 'Falla', violCodigo: 1, inspComents: 'Presencia de cucarachas en el área de almacenamiento.' },
+    { inspID: 4, inspFecha: new Date('2023-05-04'), estNumero: 4, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 5, inspComents: 'Todo en orden, personal capacitado.' },
+    { inspID: 5, inspFecha: new Date('2023-10-05'), estNumero: 5, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 2, inspComents: 'Se detectaron algunas deficiencias en el manejo de alimentos.' },
+    { inspID: 6, inspFecha: new Date('2023-06-15'), estNumero: 6, inspRiesgo: 'Alto', inspResultado: 'Oficina no encontrada', violCodigo: 4, inspComents: 'El establecimiento se encontraba cerrado durante el horario de la inspección.' },
+    { inspID: 7, inspFecha: new Date('2023-07-20'), estNumero: 7, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 4, inspComents: 'Se realizó mantenimiento preventivo de las instalaciones.' },
+    { inspID: 8, inspFecha: new Date('2023-08-25'), estNumero: 8, inspRiesgo: 'Medio', inspResultado: 'Falla', violCodigo: 3, inspComents: 'Se encontraron múltiples violaciones a las normas de higiene.' },
+    { inspID: 9, inspFecha: new Date('2023-09-30'), estNumero: 9, inspRiesgo: 'Alto', inspResultado: 'Pasa con condiciones', violCodigo: 2, inspComents: 'Se requiere mejorar la limpieza en las áreas de preparación de alimentos.' },
+    { inspID: 10, inspFecha: new Date('2023-05-10'), estNumero: 10, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 3, inspComents: 'Todo en orden, personal capacitado.' },
+    { inspID: 11, inspFecha: new Date('2023-10-11'), estNumero: 1, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 1, inspComents: 'Se detectó la presencia de moscas en el área de preparación.' },
+    { inspID: 12, inspFecha: new Date('2023-12-15'), estNumero: 2, inspRiesgo: 'Alto', inspResultado: 'Falla', violCodigo: 4, inspComents: 'Se detectaron fugas de gas en la cocina.' }
+])
+
+db.Inspecciones.insertMany([
+    { inspID: 13, inspFecha: new Date('2024-06-10'), estNumero: 3, inspRiesgo: 'Alto', inspResultado: 'Pasa con condiciones', violCodigo: 2, inspComents: 'Se requiere mejorar la limpieza en las áreas de preparación de alimentos.' },
+    { inspID: 14, inspFecha: new Date('2024-07-15'), estNumero: 4, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 5, inspComents: 'Inspección rutinaria sin problemas destacables.' },
+    { inspID: 15, inspFecha: new Date('2024-08-20'), estNumero: 5, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 1, inspComents: 'Se observaron algunas deficiencias en la limpieza del área de almacenamiento.' },
+    { inspID: 16, inspFecha: new Date('2024-09-25'), estNumero: 6, inspRiesgo: 'Alto', inspResultado: 'Pasa con condiciones', violCodigo: 4, inspComents: 'Se detectaron problemas en el sistema de ventilación de la cocina.' },
+    { inspID: 17, inspFecha: new Date('2024-10-30'), estNumero: 7, inspRiesgo: 'Bajo', inspResultado: 'Pasa', violCodigo: 4, inspComents: 'El establecimiento realizó mantenimiento preventivo de forma adecuada.' },
+    { inspID: 18, inspFecha: new Date('2024-11-15'), estNumero: 8, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 3, inspComents: 'Se observaron áreas que requieren mejoras en la higiene.' }
+])
+
+db.Inspecciones.insertOne(
+    { inspID: 19, inspFecha: new Date('2024-12-15'), estNumero: 4, inspRiesgo: 'Medio', inspResultado: 'Pasa con condiciones', violCodigo: 3, inspComents: 'Se observaron áreas que requieren mejoras en la higiene.' }
+)
+
+db.Conversaciones.insertMany([
+    {fecha: new Date('2023-01-20'),mensaje: 'Se realizó una inspección de rutina en Restaurante El Buen Sabor.',inspID: 1,inspResultado: 'Pasa'},
+    {fecha: new Date('2023-02-25'),mensaje: 'Se requiere mejorar la limpieza en la cocina de Pizzería Bella Napoli.',inspID: 2,inspResultado: 'Pasa con condiciones'},
+    {fecha: new Date('2023-05-04'),mensaje: 'Todo en orden, personal capacitado en Bar El Encuentro.',inspID: 4,inspResultado: 'Pasa'},
+    {fecha: new Date('2023-10-05'),mensaje: 'Se detectaron algunas deficiencias en el manejo de alimentos en Comedor Las Delicias.',inspID: 5,inspResultado: 'Pasa con condiciones'},
+    {fecha: new Date('2023-07-20'),mensaje: 'Se realizó mantenimiento preventivo de las instalaciones en Parrillada El Fogón.',inspID: 7,inspResultado: 'Pasa'},
+    {fecha: new Date('2024-07-15'),mensaje: 'Inspección rutinaria sin problemas destacables en Comedor Las Delicias.',inspID: 14,inspResultado: 'Pasa'},
+    {fecha: new Date('2023-03-30'),mensaje: 'Presencia de cucarachas en el área de almacenamiento de Cafetería Aroma Fresco.',inspID: 3,inspResultado: 'Falla'},
+    {fecha: new Date('2023-08-25'),mensaje: 'Se encontraron múltiples violaciones a las normas de higiene en Café Expresso.',inspID: 8,inspResultado: 'Falla'},
+    {fecha: new Date('2024-08-20'),mensaje: 'Se observaron algunas deficiencias en la limpieza del área de almacenamiento en Restaurante Mar y Tierra.',inspID: 15,inspResultado: 'Pasa con condiciones'},
+    {fecha: new Date('2024-09-25'),mensaje: 'Se detectaron problemas en el sistema de ventilación de la cocina en Hamburguesería Don Manolo.',inspID: 16,inspResultado: 'Pasa con condiciones'},
+    {fecha: new Date('2024-11-15'),mensaje: 'Se observaron áreas que requieren mejoras en la higiene en Parrillada El Fogón.',inspID: 18,inspResultado: 'Pasa con condiciones'},
+    {fecha: new Date('2024-12-15'),mensaje: 'Se observaron áreas que requieren mejoras en la higiene en Comedor Las Delicias.',inspID: 19,inspResultado: 'Pasa con condiciones'}
+])
+
+db.Conversaciones.insertMany([
+    {fecha: new Date('2023-03-30'),mensaje: 'Presencia de cucarachas en el área de almacenamiento de Cafetería Aroma Fresco.',inspID: 3,inspResultado: 'Falla'},
+    {fecha: new Date('2023-08-25'),mensaje: 'Se encontraron múltiples violaciones a las normas de higiene en Café Expresso.',inspID: 8,inspResultado: 'Falla'},
+    {fecha: new Date('2023-12-15'),mensaje: 'Se detectaron fugas de gas en la cocina en Pizzería Bella Napoli.',inspID: 12,inspResultado: 'Falla'},
+    {fecha: new Date('2024-08-20'),mensaje: 'Se observaron algunas deficiencias en la limpieza del área de almacenamiento en Restaurante Mar y Tierra.',inspID: 15,inspResultado: 'Falla'}
+])
+
+//consulta a
+db.Conversaciones.aggregate([
+    {
+        $group: {
+            _id: "$violCodigo"
+        }
+    },
+    {
+        $count: "uniqueViolations"
+    }
+])
+
+
+//consulta b
+db.Inspecciones.aggregate([
+    { $match: { inspResultado: /Pasa/i } },
+    
+    {
+        $group: {
+            _id: "$estNumero",
+            totalAprobadas: { $sum: 1 }
+        }
+    },
+
+    { $sort: { totalAprobadas: -1 } },
+
+    { $limit: 3 },
+
+    // utilizando el lookup, obtenemos más detalles del establecimiento
+    {
+        $lookup: {
+            from: "Establecimientos",
+            localField: "_id",
+            foreignField: "estNumero",
+            as: "establecimiento"
+        }
+    },
+
+    // utilizando project, proyectamos los campos que queres utilizar de establecimientos
+    {
+        $project: {
+            _id: 0,
+            estNumero: "$_id",
+            estNombre: "$establecimiento.estNombre",
+            estDireccion: "$establecimiento.estDireccion",
+            totalAprobadas: 1
+        }
+    }
+])
+
+//consulta c
+db.Conversaciones.updateMany(
+    { "inspResultado": "Falla" },
+    { $addToSet: { etiquetas: "IMPORTANTE" } }
+);
+
+db.Conversaciones.find()
